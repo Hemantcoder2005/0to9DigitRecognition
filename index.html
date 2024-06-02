@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognition</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+
+<body>
+    <div class="navbar ">
+        <div class="heading">DecaVision</div>
+    </div>
+
+    <div class="main ">
+        <div class="main-items ">
+
+            <div class="upload makeBox border">
+                <div class="box">
+                    <div class="main-heading ">Insert an Image</div>
+                    <div class="select-option make-center">
+                        <p class="state" id="0">Upload</p>
+                        <p class="state" id="1">Link</p>
+                        <p class="state" id="2">Draw</p>
+                    </div>
+                    <div class="imagePreview make-center" id="ImagePreview">
+
+                    </div>
+
+                    <div class="mssgUpload make-center" id="mssgUpload"></div>
+
+
+                    <div class="uploadMe make-center" id = "uploadMe">
+                        <button class="uploadImg">
+                            <label for="file-upload" class="custom-file-upload">Upload</label>
+                            <input id="file-upload" type="file" hidden>
+                        </button>
+
+                        <button class="uploadImg" id="reset">Reset</button>
+                        <button class="uploadImg">Predict</button>
+                    </div>
+                    <div class="link make-center" id = "link">
+                        <button class="uploadImg">
+                            <label for="file-upload" class="custom-file-upload">link</label>
+                            <input id="file-upload" type="file" hidden>
+                        </button>
+                    </div>
+                    <div class="draw make-center" id = "draw">
+                        <button class="uploadImg">
+                            <label for="file-upload" class="custom-file-upload">Draw</label>
+                            <input id="file-upload" type="file" hidden>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="predict makeBox border">
+                <div class="main-heading ">Prediction</div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="js/script.js"></script>
+<script src="js/predict.js"></script>
+
+
+
+</html>

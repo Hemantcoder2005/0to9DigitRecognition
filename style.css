@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: sans-serif;
+    background-color: black;
+}
+
+.border {
+    border: red 2px solid;
+}
+
+.navbar {
+    height: 13%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: rgb(30, 24, 24);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    border-radius: 20px;
+}
+
+.heading {
+    flex: 6;
+    height: 56%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+.main {
+    height: 87%;
+    margin-top: 87px;
+    padding: 20px;
+}
+
+.main-items {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.upload,
+.predict {
+    width: 50%;
+    height: 92%;
+    margin: auto;
+}
+
+.makeBox {
+    background-color: rgb(30, 24, 24);
+    border: solid 1px rgb(30, 24, 24);
+    border-radius: 40px;
+    padding: 8px;
+}
+
+.main-heading {
+    border-radius: 30px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #392c2c; /* Adjusted color */
+    font-size: x-large;
+}
+.select-option{
+    height: 55px;
+    gap: 10px;
+    padding: 5px;
+
+}
+.imagePreview{
+    margin: auto;
+    margin-top: 10px;
+    width: 76%;
+    height: 50%;
+    border:#392c2c 2px solid;
+    border-radius: 15px;
+    
+}
+.box{
+    height: 100%;
+}
+
+.mssgUpload{
+    padding: 12px;
+}
+
+.make-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input[type="file"] {
+    display: none;
+}
+
+.uploadImg{
+    background-color: #b1782f;
+    padding: 10px;
+    border:#392c2c 2px solid;
+    border-radius: 20px;
+
+}
+
+.state{
+    cursor: pointer;
+}
+
+.uploadMe{
+    gap:23px;
+}
