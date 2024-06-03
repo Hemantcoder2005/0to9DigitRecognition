@@ -6,6 +6,7 @@ const upload = document.getElementById('uploadMe');
 const link = document.getElementById('link');
 const draw = document.getElementById('draw');
 const reset = document.getElementById('reset');
+var imageMatrix = []
 /*
 0 --> upload
 1 --> link
@@ -25,31 +26,27 @@ link.style.display = "none"
 draw.style.display = "none"
 
 fileInput.addEventListener('change', checkImagePresent);
-console.log(fileInput)
 
 reset.addEventListener('click', function () {
     fileInput.value = ""; // Clear the file input
     ImagePreviewUpload.style.backgroundImage = 'none'; // Clear the image preview
     ImagePreviewUpload.textContent = "No Image is Present";
     mssgUpload.textContent = ""; // Clear any messages
-    console.log("reset");
+    imageMatrix = []
 });
 function handleState(event) {
     InsertState = parseInt(event.target.id);
     if (InsertState === 0) {
-        console.log("Uploading State!");
         isImagePresent = false
         link.style.display = "none"
         draw.style.display = "none"
         upload.style.display = ""
     } else if (InsertState === 1) {
-        console.log("Link State!");
         isImagePresent = false
         upload.style.display = "none"
         draw.style.display = "none"
         link.style.display = ""
     } else if (InsertState === 2) {
-        console.log("Draw State!");
         isImagePresent = false
         upload.style.display = "none"
         link.style.display = "none"
@@ -59,7 +56,6 @@ function handleState(event) {
 
 }
 function checkImagePresent() {
-    console.log("File input value changed");
 
     if (fileInput.files.length > 0) {
         ImagePreviewUpload.textContent = ""; // Clear the "No Image is Present" message
@@ -70,6 +66,11 @@ function checkImagePresent() {
             mssgUpload.textContent = "Uploaded Successfully!"
             mssgUpload.style.color = "green"
             isImagePresent = true;
+            const imgElement = document.createElement('img');
+            imgElement.onload = function () {
+                preprocessedImage(imgElement)
+            }
+            imgElement.src = imageUrl
         } else {
             mssgUpload.textContent = "Invalid File type please select Image"
             mssgUpload.style.color = "red"
@@ -77,6 +78,7 @@ function checkImagePresent() {
             ImagePreviewUpload.style.backgroundImage = 'none';
             ImagePreviewUpload.textContent = "No Image is Present";
             mssgUpload.textContent = "Invalid! Please Select Image"
+            imageMatrix = []
         }
 
     } else {
@@ -84,8 +86,8 @@ function checkImagePresent() {
         ImagePreviewUpload.style.backgroundImage = 'none';
         ImagePreviewUpload.textContent = "No Image is Present";
         mssgUpload.textContent = ""
+        imageMatrix = []
     }
-    console.log(fileInput.files)
 }
 
 
@@ -98,19 +100,33 @@ function validateImageType(file) {
 }
 
 
+// Preprocessing Stage
+function preprocessedImage(image) {
+    const canvas = document.getElementById('canvasOutput');
+    const ctx = canvas.getContext('2d');
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx.drawImage(image, 0, 0, image.width, image.height);
 
-// Model Prediction
+    // Read the image data from the canvas into an OpenCV Mat
+    let src = cv.imread(canvas);
+    cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY);
+    let ksize = new cv.Size(5, 5);
+    cv.GaussianBlur(src, src, ksize, 0, 0, cv.BORDER_DEFAULT);
+    cv.bitwise_not(src, src);
 
-async function loadModel() {
-    const model = await tf.loadLayersModel('model.json');
-    console.log("Done")
-    return model;
+    let dst = new cv.Mat();
+    cv.threshold(src, dst, 0, 255, cv.THRESH_BINARY | cv.THRESH_OTSU);
+
+    let dsize = new cv.Size(28, 28);
+    cv.resize(dst, dst, dsize, 0, 0, cv.INTER_AREA);
+
+    // Flatten the image
+    let flattened = [];
+    for (let i = 0; i < dst.rows; i++) {
+        for (let j = 0; j < dst.cols; j++) {
+            flattened.push(dst.ucharPtr(i, j)[0]);
+        }
+    }
+    imageMatrix = flattened
 }
-
-// Make predictions
-async function predict(model, inputData) {
-    const prediction = model.predict(inputData);
-    return prediction;
-}
-
-loadModel()

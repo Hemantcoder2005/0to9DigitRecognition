@@ -115,6 +115,7 @@ input[type="file"] {
     padding: 10px;
     border:#392c2c 2px solid;
     border-radius: 20px;
+    cursor: pointer;
 
 }
 
