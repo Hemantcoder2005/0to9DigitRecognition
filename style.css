@@ -5,130 +5,139 @@
     color: white;
 }
 
-html,
-body {
+html, body {
     height: 100%;
-    font-family: sans-serif;
-    background-color: black;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    overflow: hidden;
 }
 
 .border {
-    border: red 2px solid;
+    border: #b1782f 2px solid;
 }
 
 .navbar {
-    height: 13%;
+    height: 10%;
     width: 100%;
     position: fixed;
     top: 0;
     z-index: 1000;
-    background-color: rgb(30, 24, 24);
+    /* background-color: #1f1f1f; */
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    border-radius: 20px;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .heading {
-    flex: 6;
-    height: 56%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: xx-large;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .main {
-    height: 87%;
-    margin-top: 87px;
+    height: 90%;
+    margin-top: 5%;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-items {
-    height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    justify-content: space-around;
     gap: 20px;
 }
 
-.upload,
-.predict {
-    width: 50%;
-    height: 92%;
-    margin: auto;
+.upload, .predict {
+    width: 45%;
+    height: auto;
+    padding: 20px;
 }
 
 .makeBox {
-    background-color: rgb(30, 24, 24);
-    border: solid 1px rgb(30, 24, 24);
-    border-radius: 40px;
-    padding: 8px;
+    background-color: #1f1f1f;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .main-heading {
-    border-radius: 30px;
-    height: 80px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #392c2c; /* Adjusted color */
-    font-size: x-large;
-}
-.select-option{
-    height: 55px;
-    gap: 10px;
-    padding: 5px;
-
-}
-.imagePreview{
-    margin: auto;
-    margin-top: 10px;
-    width: 76%;
-    height: 50%;
-    border:#392c2c 2px solid;
-    border-radius: 15px;
-    
-}
-.box{
-    height: 100%;
+    background-color: #292929;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.mssgUpload{
-    padding: 12px;
-}
-
-.make-center{
+.select-option {
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-input[type="file"] {
-    display: none;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.uploadImg{
+.state {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #292929;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.state:hover {
     background-color: #b1782f;
-    padding: 10px;
-    border:#392c2c 2px solid;
+}
+
+.imagePreview {
+    margin: 20px auto;
+    width: 100%;
+    height: 120px;
+    background-color: #292929;
+    border: 2px solid #b1782f;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploadMe {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.uploadImg {
+    background-color: #b1782f;
+    padding: 10px 20px;
+    border: none;
     border-radius: 20px;
     cursor: pointer;
-
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-.state{
-    cursor: pointer;
+.uploadImg:hover {
+    background-color: #d49448;
 }
 
-.uploadMe{
-    gap:23px;
+.mssgUpload {
+    padding: 12px;
+    text-align: center;
 }
 
-.prediction{
-    height: 300px;
-    font-size: 90px;
+.prediction {
+    height: 70%;
+    font-size: 2rem;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #292929;
+    border-radius: 20px;
 }
