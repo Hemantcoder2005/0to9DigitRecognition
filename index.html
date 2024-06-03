@@ -7,6 +7,7 @@
     <title>DecaVision</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
 </head>
 
 <body>
@@ -25,29 +26,30 @@
                         <p class="state" id="1">Link</p>
                         <p class="state" id="2">Draw</p>
                     </div>
-                    <div class="imagePreview make-center" id="ImagePreview">
-
+                    <div class="drawAndPreview  border">
+                        <div class="imagePreview make-center" id="ImagePreview"></div>
+                        <div class="container" id="container"></div>
                     </div>
-
                     <div class="mssgUpload make-center" id="mssgUpload"></div>
 
 
-                    <div class="uploadMe make-center" id = "uploadMe">
+                    <div class="uploadMe make-center" id="uploadMe">
                         <button class="uploadImg">
                             <label for="file-upload" class="custom-file-upload">Upload</label>
                             <input id="file-upload" type="file" hidden>
                         </button>
 
                         <button class="uploadImg" id="reset">Reset</button>
-                        <button class="uploadImg" id ="predict">Predict</button>
+                        <button class="uploadImg" id="predict">Predict</button>
                     </div>
-                    <div class="link make-center" id = "link">
+                    <div class="link make-center" id="link">
                         <button class="uploadImg">
                             <label for="file-upload" class="custom-file-upload">link</label>
                             <input id="file-upload" type="file" hidden>
                         </button>
                     </div>
-                    <div class="draw make-center" id = "draw">
+                    <div class="draw make-center" id="draw">
+
                         <button class="uploadImg">
                             <label for="file-upload" class="custom-file-upload">Draw</label>
                             <input id="file-upload" type="file" hidden>
@@ -60,15 +62,19 @@
 
             <div class="predict makeBox">
                 <div class="main-heading ">Prediction</div>
-                <div class="prediction make-center" id ="prediction"></div>
+                <div class="prediction make-center" id="prediction"></div>
             </div>
         </div>
     </div>
     <canvas id="canvasOutput" style="display: none;"></canvas>
     <canvas id="FlattenedImageOutput"></canvas>
+
+
 </body>
 <script async src="https://docs.opencv.org/4.x/opencv.js" type="text/javascript"></script>
 <script src="script.js"></script>
+
+
 
 
 

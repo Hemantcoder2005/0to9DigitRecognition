@@ -7,6 +7,7 @@ const link = document.getElementById('link');
 const draw = document.getElementById('draw');
 const reset = document.getElementById('reset');
 const Prediction = document.getElementById('prediction');
+const drawableCanvas = document.getElementById('container');
 var predictedAnswer = -1
 var imageMatrix = []
 /*
@@ -21,8 +22,6 @@ ImagePreviewUpload.textContent = "No Image is Present";
 stateElements.forEach(function (stateElement) {
     stateElement.addEventListener("click", handleState);
 });
-
-
 
 link.style.display = "none"
 draw.style.display = "none"
@@ -44,16 +43,24 @@ function handleState(event) {
         link.style.display = "none"
         draw.style.display = "none"
         upload.style.display = ""
+        ImagePreviewUpload.style.display = ""
+        drawableCanvas.style.display = "none"
     } else if (InsertState === 1) {
         isImagePresent = false
         upload.style.display = "none"
         draw.style.display = "none"
         link.style.display = ""
+        ImagePreviewUpload.style.display = ""
+        drawableCanvas.style.display = "none"
     } else if (InsertState === 2) {
         isImagePresent = false
         upload.style.display = "none"
         link.style.display = "none"
         draw.style.display = ""
+
+        ImagePreviewUpload.style.display = "none"
+        drawableCanvas.style.display = ""
+
     }
 
 
@@ -177,3 +184,50 @@ function Predict(model, inputTensor) {
         });
     }
 })();
+
+
+const stage = new Konva.Stage({
+    container: 'container',
+    width: 500,
+    height: 300,
+});
+
+const layer = new Konva.Layer();
+stage.add(layer);
+
+const drawingLine = new Konva.Line({
+    points: [], // Initialize with an empty array
+    stroke: 'white',
+    strokeWidth: 2,
+    lineCap: 'round',
+    lineJoin: 'round',
+});
+
+layer.add(drawingLine);
+stage.draw();
+
+let isDrawing = false;
+
+stage.on('mousedown touchstart', () => {
+    isDrawing = true;
+    const pos = stage.getPointerPosition();
+    drawingLine.points([pos.x, pos.y]);
+});
+
+stage.on('mousemove touchmove', () => {
+    if (!isDrawing) return;
+    const pos = stage.getPointerPosition();
+    const newPoints = drawingLine.points().concat([pos.x, pos.y]);
+    drawingLine.points(newPoints);
+    layer.batchDraw();
+});
+
+stage.on('mouseup touchend', () => {
+    isDrawing = false;
+});
+
+// Eraser functionality (optional)
+const eraserButton = document.getElementById('eraser-button');
+eraserButton.addEventListener('click', () => {
+    drawingLine.stroke('white'); // Set stroke color to white for erasing
+});
