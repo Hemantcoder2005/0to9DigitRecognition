@@ -126,3 +126,9 @@ input[type="file"] {
 .uploadMe{
     gap:23px;
 }
+
+.prediction{
+    height: 300px;
+    font-size: 90px;
+    margin-top: 20px;
+}
